@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repositorio de Recursos Digitales</title>
+  <style>
+    :root{
+      --azul-profundo:#17263f;
+      --azul:#27496d;
+      --dorado:#c7a76c;
+      --crema:#f6f1e8;
+      --gris:#eef1f5;
+      --texto:#1f2937;
+      --blanco:#ffffff;
+      --sombra:0 18px 45px rgba(18, 32, 52, .16);
+      --radio:22px;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+
+    body{
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(199,167,108,.28), transparent 32%),
+        linear-gradient(135deg, #f8fafc 0%, #eef2f7 45%, #f6f1e8 100%);
+      color:var(--texto);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    .hero{
+      position:relative;
+      padding:52px 22px 42px;
+      background:linear-gradient(120deg, var(--azul-profundo), var(--azul));
+      color:var(--blanco);
+      text-align:center;
+      overflow:hidden;
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+    }
+
+    .hero::before{width:240px; height:240px; top:-80px; left:-70px;}
+    .hero::after{width:330px; height:330px; right:-140px; bottom:-170px;}
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 16px;
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      backdrop-filter:blur(8px);
+      font-size:.94rem;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
+    }
+
+    h1{
+      font-size:clamp(2.1rem, 5vw, 4.2rem);
+      line-height:1.05;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+      position:relative;
+      z-index:1;
+    }
+
+    .subtitle{
+      max-width:920px;
+      margin:18px auto 0;
+      font-size:clamp(1rem, 2vw, 1.22rem);
+      color:#e9edf5;
+      line-height:1.55;
+      position:relative;
+      z-index:1;
+    }
+
+    .teacher{
+      margin-top:20px;
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:16px;
+      background:rgba(199,167,108,.20);
+      border:1px solid rgba(199,167,108,.45);
+      color:#fff5dc;
+      font-weight:650;
+      position:relative;
+      z-index:1;
+    }
+
+    main{
+      width:min(1180px, 92%);
+      margin: -26px auto 48px;
+      position:relative;
+      z-index:2;
+    }
+
+    .intro-panel{
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(39,73,109,.10);
+      box-shadow:var(--sombra);
+      border-radius:var(--radio);
+      padding:24px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:20px;
+      align-items:center;
+      backdrop-filter:blur(10px);
+      margin-bottom:28px;
+    }
+
+    .intro-panel h2{
+      color:var(--azul-profundo);
+      font-size:1.45rem;
+      margin-bottom:8px;
+    }
+
+    .intro-panel p{line-height:1.62; color:#4b5563;}
+
+    .stats{
+      display:flex;
+      gap:14px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+
+    .stat{
+      min-width:128px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:linear-gradient(145deg, #ffffff, #f4efe4);
+      border:1px solid rgba(199,167,108,.25);
+      text-align:center;
+    }
+
+    .stat strong{display:block; color:var(--azul); font-size:1.65rem;}
+    .stat span{font-size:.9rem; color:#5d6470;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:22px;
+    }
+
+    .card{
+      position:relative;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.55), transparent 30%),
+        linear-gradient(145deg, var(--card-start), var(--card-end));
+      border-radius:var(--radio);
+      padding:24px 22px 22px;
+      border:1px solid rgba(255,255,255,.55);
+      box-shadow:0 14px 34px rgba(23,38,63,.15);
+      overflow:hidden;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      transition: transform .28s ease, box-shadow .28s ease, border .28s ease;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto 0;
+      height:8px;
+      background:linear-gradient(90deg, var(--accent), rgba(255,255,255,.75));
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      right:-62px;
+      bottom:-58px;
+      background:rgba(255,255,255,.22);
+      pointer-events:none;
+    }
+
+    .card:hover{
+      transform:translateY(-10px) scale(1.015);
+      box-shadow:0 24px 55px rgba(23,38,63,.22);
+      border-color:rgba(255,255,255,.85);
+    }
+
+    .icon-wrap{
+      width:76px;
+      height:76px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.70);
+      margin-bottom:18px;
+      border:1px solid rgba(255,255,255,.80);
+      box-shadow:0 10px 24px rgba(23,38,63,.10);
+    }
+
+    .icon-wrap svg{width:42px; height:42px; fill:none; stroke:var(--accent); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+
+    .card-number{
+      position:absolute;
+      top:20px;
+      right:20px;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.78);
+      color:var(--accent);
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.85);
+      box-shadow:0 8px 18px rgba(23,38,63,.10);
+    }
+
+    .card h3{
+      color:#132033;
+      font-size:1.20rem;
+      margin-bottom:10px;
+    }
+
+    .description{
+      color:#243244;
+      line-height:1.55;
+      font-size:.95rem;
+      margin-bottom:14px;
+      background:rgba(255,255,255,.42);
+      border-left:4px solid var(--accent);
+      border-radius:12px;
+      padding:11px 12px;
+    }
+
+    .authors{
+      color:#374151;
+      line-height:1.48;
+      font-size:.93rem;
+      margin-bottom:18px;
+      flex:1;
+    }
+
+    .tag{
+      display:inline-block;
+      width:max-content;
+      max-width:100%;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      color:var(--accent);
+      font-size:.82rem;
+      font-weight:800;
+      margin-bottom:16px;
+      box-shadow:0 6px 16px rgba(23,38,63,.08);
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius:14px;
+      padding:13px 16px;
+      background:linear-gradient(135deg, var(--accent), #17263f);
+      color:white;
+      font-weight:800;
+      font-size:.96rem;
+      letter-spacing:.2px;
+      transition:transform .2s ease, filter .2s ease;
+      box-shadow:0 10px 22px rgba(23,38,63,.22);
+      position:relative;
+      z-index:1;
+    }
+
+    .btn:hover{transform:scale(1.035); filter:brightness(1.08);}
+
+    footer{
+      width:min(1180px, 92%);
+      margin: 0 auto 38px;
+      text-align:center;
+      color:#5b6470;
+      font-size:.95rem;
+    }
+
+    .floating-tools{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:10;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .tool-btn{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:none;
+      cursor:pointer;
+      background:var(--azul-profundo);
+      color:white;
+      box-shadow:0 10px 25px rgba(0,0,0,.22);
+      font-size:1.25rem;
+    }
+
+    @media (max-width: 1050px){
+      .grid{grid-template-columns:repeat(2, 1fr);}
+    }
+
+    @media (max-width: 720px){
+      .hero{padding-top:38px;}
+      .intro-panel{grid-template-columns:1fr;}
+      .stats{justify-content:flex-start;}
+      .grid{grid-template-columns:1fr;}
+      .card{min-height:auto;}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="badge">📚 Repositorio académico interactivo</div>
+    <h1>Repositorio de Recursos Digitales</h1>
+    <p class="subtitle">
+      Espacio de consulta y acceso a aplicaciones educativas desarrolladas en el marco de la
+      <strong>Maestría en Enseñanza del Lenguaje y la Lengua Castellana</strong>.
+    </p>
+    <div class="teacher">Docente: Mg. Narlys Villalobo Ropain</div>
+  </header>
+
+  <main>
+    <section class="intro-panel" aria-label="Información general del repositorio">
+      <div>
+        <h2>Recursos digitales para fortalecer el aprendizaje del lenguaje</h2>
+        <p>
+          Este repositorio reúne experiencias digitales orientadas al desarrollo de habilidades comunicativas,
+          lectura, escritura y exploración literaria. Cada tarjeta permite acceder directamente al recurso creado
+          por los autores correspondientes.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>4</strong><span>recursos</span></div>
+        <div class="stat"><strong>12</strong><span>autores</span></div>
+      </div>
+    </section>
+
+    <section class="grid" id="cardsContainer" aria-label="Listado de recursos digitales"></section>
+  </main>
+
+  <footer>
+    Universidad del Magdalena · Facultad de Ciencias de la Educación · Maestría en Enseñanza del Lenguaje y la Lengua Castellana
+  </footer>
+
+  <div class="floating-tools">
+    <button class="tool-btn" title="Ir arriba" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+  </div>
+
+  <script>
+    const resources = [
+      {
+        title: "Mis primeras letras",
+        authors: "Jeris Kate Martínez Carrillo, Onerys Gaitan Mejía, Adriana Marcela Velásquez Meneses",
+        url: "https://adrianavelasquezmeneses.github.io/Mis-primeras-letras/",
+        tag: "Lectoescritura inicial",
+        description: "Aplicación educativa orientada al reconocimiento de letras, sonidos y primeras palabras, ideal para fortalecer procesos iniciales de lectura y escritura.",
+        icon: "book",
+        colors: ["#ffe29f", "#ffa99f", "#c45100"]
+      },
+      {
+        title: "Verballia",
+        authors: "Carolina Dayana Borja Orozco, Angeles Anyereis Alvarez Calero, Luna Alejandra Daza Linero, Libia Ester González López",
+        url: "https://lunadaza.github.io/Verballia/",
+        tag: "Lenguaje interactivo",
+        description: "Recurso interactivo para explorar el uso de las palabras, los verbos y la construcción de expresiones comunicativas mediante actividades dinámicas.",
+        icon: "chat",
+        colors: ["#b7f8db", "#50a7c2", "#006b7a"]
+      },
+      {
+        title: "Mi página web",
+        authors: "Sirena Miranda Martínez, Carlos Elicer Romero Guevara, Carolina Montaño Zúñiga, Katerine Pastran Hernández",
+        url: "https://arroyojoe.github.io/mi-pagina-web/",
+        tag: "Recurso pedagógico",
+        description: "Propuesta digital de apoyo pedagógico que presenta contenidos y actividades para enriquecer el aprendizaje del lenguaje desde un entorno web sencillo.",
+        icon: "screen",
+        colors: ["#d7c6ff", "#9f8cff", "#5744a8"]
+      },
+      {
+        title: "Universo literario",
+        authors: "Melissa Estrada Alvarez, Desiree Cantillo Calderon, Marcela Ortiz Medina",
+        url: "https://melissa-alv.github.io/UNIVERSO-LITERARIO/",
+        tag: "Literatura y lectura",
+        description: "Espacio creativo para acercarse a la literatura, promover la comprensión lectora y motivar la imaginación a través de experiencias digitales.",
+        icon: "stars",
+        colors: ["#ffcfdf", "#b0f3f1", "#a01863"]
+      }
+    ];
+
+    const icons = {
+      book: `<svg viewBox="0 0 48 48"><path d="M9 10h13a7 7 0 0 1 7 7v23a7 7 0 0 0-7-7H9z"></path><path d="M39 10H26a7 7 0 0 0-7 7v23a7 7 0 0 1 7-7h13z"></path><path d="M14 17h7M14 24h7"></path></svg>`,
+      chat: `<svg viewBox="0 0 48 48"><path d="M12 13h24a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H23l-9 7v-7h-2a6 6 0 0 1-6-6V19a6 6 0 0 1 6-6z"></path><path d="M15 22h18M15 29h12"></path></svg>`,
+      screen: `<svg viewBox="0 0 48 48"><rect x="7" y="10" width="34" height="24" rx="4"></rect><path d="M18 41h12M24 34v7M15 20l4 4-4 4M25 28h8"></path></svg>`,
+      stars: `<svg viewBox="0 0 48 48"><path d="M24 5l4.8 12.2L42 18.1l-10.2 8.3 3.4 12.7L24 32.1 12.8 39.1l3.4-12.7L6 18.1l13.2-.9z"></path><path d="M39 5v8M35 9h8M8 34v6M5 37h6"></path></svg>`
+    };
+
+    const container = document.getElementById("cardsContainer");
+
+    resources.forEach((resource, index) => {
+      const article = document.createElement("article");
+      article.className = "card";
+      article.style.setProperty("--card-start", resource.colors[0]);
+      article.style.setProperty("--card-end", resource.colors[1]);
+      article.style.setProperty("--accent", resource.colors[2]);
+      article.innerHTML = `
+        <span class="card-number">${index + 1}</span>
+        <div class="icon-wrap" aria-hidden="true">${icons[resource.icon]}</div>
+        <span class="tag">${resource.tag}</span>
+        <h3>${resource.title}</h3>
+        <p class="description"><strong>Descripción:</strong> ${resource.description}</p>
+        <p class="authors"><strong>Autores:</strong> ${resource.authors}</p>
+        <button class="btn" type="button" onclick="openResource('${resource.url}')">Visitar recurso digital</button>
+      `;
+      container.appendChild(article);
+    });
+
+    function openResource(url){
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  </script>
+</body>
+</html>
